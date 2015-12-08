@@ -1,0 +1,22 @@
+﻿@model New_Stuff.ViewModels.PodcastListViewModel
+@using New_Stuff.Models;
+
+<section class="container">
+    <div class="thumbnail-list">
+        @foreach (PodcastModel podcast in Model.Podcasts)
+        {
+            <article class="podcast-thumb">
+                <a asp-controller="Home" asp-action="Podcast">
+                    <img class="podcast-thumb__image" src="//placehold.it/150x150" />
+                </a>
+                <div class="podcast-thumb__content">
+                    <a asp-controller="Home" asp-action="Podcast">
+                        <h4 class="podcast-thumb__header">@podcast.Title <span class="podcast-thumb__duration">@podcast.Duration</span></h4>
+                    </a>
+                    <div class="podcast-thumb__publish-date">@podcast.Published</div>
+                    <p class="podcast-thumb__description">@podcast.Description</p>
+                </div>
+            </article>
+        }
+    </div>
+</section>

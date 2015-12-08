@@ -1,0 +1,11 @@
+﻿@model New_Stuff.ViewModels.RelatedPodcastViewModel
+
+<section class="related-podcasts">
+    @foreach (PodcastModel podcast in Model.RelatedPodcasts)
+    {
+        <div class="related-podcast">
+            <h4 class="related-podcast__title">@podcast.Title</h4>
+            <p class="related-podcast__duration">@podcast.Duration</p>
+        </div>
+    }
+</section>

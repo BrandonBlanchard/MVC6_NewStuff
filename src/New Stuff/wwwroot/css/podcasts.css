@@ -1,0 +1,24 @@
+.podcast {
+  width: 60%;
+  float: left;
+  margin-top: 30px;
+}
+.podcast__image {
+  float: left;
+  padding-right: 20px;
+}
+.podcast__description {
+  overflow: auto;
+  display: block;
+}
+.podcast-thumb {
+  overflow: auto;
+  margin-top: 30px;
+}
+.podcast-thumb__image {
+  float: left;
+  margin-right: 20px;
+}
+.podcast-thumb__content {
+  width: 80%;
+}
