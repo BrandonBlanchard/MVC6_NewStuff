@@ -1,9 +1,0 @@
-﻿@model PodcastModel
-
-<section class="podcast">
-    <img class="podcast__image" src="//placehold.it/150x150" />
-    <h1 class="podcast__title">@Model.Title</h1>
-    <p class="podcast__description">@Model.Description</p>
-</section>
-
-@Component.Invoke("RelatedPodcasts", Model.Title)

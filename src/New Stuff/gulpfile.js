@@ -10,7 +10,8 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     watch = require("gulp-watch"),
-    batch = require("gulp-batch");
+    batch = require("gulp-batch"),
+    plumber = require("gulp-plumber");
 
 var paths = {
     webroot: "./wwwroot/"
@@ -56,9 +57,15 @@ gulp.task("transpile:less", function() {
 });
 
 gulp.task("watch:less", function () {
-    watch(paths.less, batch(function (events, done) {
-        gulp.start("less", done);
-    }))
+    return gulp.src(paths.less)
+                .pipe(watch(paths.less))
+                .pipe(plumber())
+                .pipe(less())
+                .pipe(gulp.dest(paths.cssDest))
+                .pipe(concat(paths.concatCssDest))
+                .pipe(cssmin())
+                .pipe(gulp.dest("."));
+    
 });
 
 gulp.task("min", ["min:js", "min:css"]);

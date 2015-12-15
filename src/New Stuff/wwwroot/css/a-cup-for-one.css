@@ -1,0 +1,39 @@
+body {
+  background-color: #fff;
+}
+.cup-chooser {
+  width: 100%;
+}
+.cup-chooser__cup-list {
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  list-style: none;
+}
+.cup-chooser__cup {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+.cup-chooser__cup-radio {
+  position: absolute;
+  opacity: 0;
+  float: left;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+}
+.cup-chooser__cup-image {
+  width: 100px;
+  height: 100px;
+  background-color: #53bc93;
+}
+.cup-chooser__cup-radio:checked + .cup-chooser__cup-image {
+  box-shadow: #53bc93 2px 2px 10px;
+}

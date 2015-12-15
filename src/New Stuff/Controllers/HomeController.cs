@@ -11,25 +11,62 @@ namespace New_Stuff.Controllers
 {
     public class HomeController : Controller
     {
-        public IPodcastService _podcastService;
-        
-        public HomeController(IPodcastService service)
+        public ICupService cupService { get; set; }
+
+        public IEmailSender emailSender { get; set; }
+
+        public HomeController(ICupService _cupService, IEmailSender _emailSender)
         {
-            _podcastService = service;
+            cupService = _cupService;
         }
 
-        public IActionResult Index(int page = 0)
+        public IActionResult Index()
         {
-            PodcastListViewModel model = _podcastService.GetPodcasts(page);
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult ACupForOne()
+        {
+            CupTradeViewModel model = new CupTradeViewModel();
+
+            model.CupChoices = cupService.GetCups();
 
             return View(model);
         }
 
-        public IActionResult Podcast(int podcast = 0)
+        [HttpPost]
+        public IActionResult ACupForOne(CupTradeViewModel model)
         {
-            PodcastModel model = _podcastService.GetPodcast(podcast);
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
+            EmailModel email = EmailBuilder.Construct(EmailDefaults.DebugRecipient, EmailDefaults.DefaultTitle, model.GetAll());
+
+            emailSender.SendEmailAsync(email.To, email.Title, email.Body);
+
+            return RedirectToAction("ACupForOneConfirmation", model);
+        }
+
+        public IActionResult ACupForOneConfirmation(CupTradeViewModel model)
+        {
             return View(model);
+        }
+
+        public IActionResult HowItWorks()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
         }
 
         public IActionResult Error()

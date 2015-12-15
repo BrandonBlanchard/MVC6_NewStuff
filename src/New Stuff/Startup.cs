@@ -56,7 +56,7 @@ namespace New_Stuff
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // New Stuff
-            services.AddTransient<IPodcastService, PodcastService>();
+            services.AddTransient<ICupService, CupService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

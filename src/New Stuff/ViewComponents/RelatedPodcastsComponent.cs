@@ -11,18 +11,16 @@ namespace New_Stuff.ViewComponents
     [ViewComponent(Name = "RelatedPodcasts")]
     public class RelatedPodcastsComponent : ViewComponent
     {
-        protected IPodcastService service;
+        protected ICupService service;
 
-        public RelatedPodcastsComponent(IPodcastService _service)
+        public RelatedPodcastsComponent(ICupService _service)
         {
             service = _service;
         }
 
         public IViewComponentResult Invoke(string podcast)
         {
-            RelatedPodcastViewModel model = service.GetRelatedPodcasts(podcast);
-
-            return View(model);
+            return View();
         }
     }
 }

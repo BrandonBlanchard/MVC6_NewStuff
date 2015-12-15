@@ -1,0 +1,60 @@
+﻿@model New_Stuff.ViewModels.CupTradeViewModel
+@using New_Stuff.Models;
+
+<section class="acup-container">
+    <form asp-controller="Home" asp-action="ACupForOne" method="post">
+        <div class="cup-chooser">
+            <ul class="cup-chooser__cup-list">
+                @foreach (string cup in Model.CupChoices)
+            {
+                    <li class="cup-chooser__cup">
+                        <input type="radio" class="cup-chooser__cup-radio" asp-for="CupChoice" value="@cup" />
+                        <img class="cup-chooser__cup-image" src="" />
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="upload-cup">
+            <label asp-for="ImagePath" />
+            <input type="file" asp-for="ImagePath" />
+            <span asp-validation-for="ImagePath"></span>
+        </div>
+
+        <div class="cup-story">
+            <label asp-for="CupRelationShip" class="cup-story__label"></label>
+            <input type="text" asp-for="CupRelationShip" class="cup-story__field" />
+            <span asp-validation-for="CupRelationShip"></span>
+
+            <label asp-for="GiveReason" class="cup-story__label"></label>
+            <input type="text" asp-for="GiveReason" class="cup-story__field" />
+            <span asp-validation-for="GiveReason"></span>
+
+            <label asp-for="WhatWouldYouDo" class="cup-story__label"></label>
+            <input type="text" asp-for="WhatWouldYouDo" class="cup-story__field" />
+            <span asp-validation-for="WhatWouldYouDo"></span>
+        </div>
+
+        <div class="exchange-details">
+            <label asp-for="MetroStation" class="exchange-details__label"></label>
+            <input type="text" asp-for="MetroStation" class="exchange-details__field" />
+            <span asp-validation-for="MetroStation"></span>
+
+            <label asp-for="ExchangeDate" class="exchange-details__label"></label>
+            <input type="text" asp-for="ExchangeDate" class="exchange-details__date" />
+            <span asp-validation-for="ExchangeDate"></span>
+        </div>
+
+        <div class="contact-info">
+            <label asp-for="WhatsApp" class="contact-info__label"></label>
+            <input type="text" asp-for="WhatsApp" class="contact-info__field" />
+            <span asp-validation-for="WhatsApp"></span>
+
+            <label asp-for="Email" class="contact-info__label"></label>
+            <input type="text" asp-for="Email" class="contact-info__field" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div asp-validation-summary="ValidationSummary.All"></div>
+        <input type="submit" />
+    </form>
+</section>
